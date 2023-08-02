@@ -1,0 +1,37 @@
+
+.event-type-list {
+    display: flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content: center;
+    width:95%;
+    margin-left:2.5%;
+}
+
+.event-type {
+    width:45%;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #04aabd3a;
+    border: 2px solid #0396A6;
+    color: #024059;
+    margin: 10px 0;
+    border-radius: 5px;
+    &:hover {
+        cursor:pointer;
+        background-color: #0396A6;
+    }
+    & h3 {
+        width: 100%;
+        word-wrap: break-word;
+    }
+    &.selected{
+        background-color: #ec19dede;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .event-type {
+        width: calc(25% - 10px);
+    }
+}

@@ -1,0 +1,44 @@
+
+.event-list {
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: space-around;
+    width: 95%;
+    margin-left:2.5%;
+    gap: 10px;
+}
+
+.event {
+    width: 100%;
+    background-color: #a0ced5b7;
+    box-sizing: border-box;
+    padding:10px;
+    margin-bottom:10px;
+    word-wrap: break-word;
+    border-radius: 5px;
+    border: 2px solid #0396A6;
+    & img {
+        width: 90%;
+        margin-left:5%;
+        margin-top:10px;
+    }
+    & iframe {
+        width: 90%;
+        margin-left:5%;
+        margin-top:10px;
+    }
+
+}
+
+@media screen and (min-width: 768px) {
+    .event {
+        width: calc(50% - 10px);
+    }
+}
+
+@media screen and (min-width: 2048px) {
+    .event {
+        width: calc(25% - 10px);
+    }
+}
+    

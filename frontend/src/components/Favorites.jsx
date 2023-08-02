@@ -2,26 +2,25 @@ import {useContext,useEffect,useState} from 'react';
 
 
 import Event from './Event';
-import '../styles/Event.scss'
+import FavoritesContext from '../context/FavoritesContext';
+import '../styles/Event.scss';
 
 const Favorites = () => {
     const [events,setEvents] = useState([]);
+    const {favorites} = useContext(FavoritesContext);
+
     const getData = async () => {
-        const favorites = JSON.parse(localStorage.getItem('favorites'));
-        if (favorites === null || favorites.length === 0) {
-            setEvents([]);
-            return;
-        }
         setEvents(favorites);
     };
+    
     useEffect( () => {
         getData();
-    },[]);
+    },[favorites]);
 
     return (
         <section className="event-list">
             {events.map( (event) => (
-                <Event event={event} key={event.id} onChange={getData}/>
+                <Event event={event} key={event.id} />
             ))}
         </section>
     )

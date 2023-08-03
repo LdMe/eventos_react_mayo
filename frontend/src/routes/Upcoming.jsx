@@ -1,6 +1,5 @@
 import { useState,useRef } from 'react';
 import '../App.scss';
-import '../styles/Button.scss';
 
 import EventTypeList from '../components/EventTypeList';
 import EventList from '../components/EventList';

@@ -2,13 +2,17 @@ import {useContext, useEffect,useState} from 'react';
 
 import IdiomaContext from "../context/idiomaContext";
 import FavoritesContext from '../context/FavoritesContext';
+import LoggedInContext from '../context/loggedInContext';
 
 const Event = ({event}) => {
     const [isFavorite,setIsFavorite] = useState(false);
-    const [isLoggedIn,setIsLoggedIn] = useState(false);
+
+    const {isLoggedIn} = useContext(LoggedInContext);
     const idioma = useContext(IdiomaContext);
     const {favorites,getFavoritesApi} = useContext(FavoritesContext);
+
     const image  = event.images.length ? event.images[0].imageUrl: "https://via.placeholder.com/150";
+
     const saveFavorite = async () => {
         if(isFavorite) {
             await deleteFavoriteApi();
@@ -65,15 +69,9 @@ const Event = ({event}) => {
         if (isFavorite) {
             setIsFavorite(true);
         }
-        const token = localStorage.getItem('token');
-        if(token) {
-            setIsLoggedIn(true);
-        }
+        
     },[]);
 
-    useEffect( () => {
-        
-    },[isFavorite]);
 
     return (
         <div className="event">

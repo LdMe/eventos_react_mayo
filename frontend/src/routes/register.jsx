@@ -1,7 +1,10 @@
 import {useNavigate} from 'react-router-dom'
-import { useState } from 'react';
+import { useState,useContext } from 'react';
+
+import LoggedInContext from '../context/loggedInContext';
 
 const Register = () => {
+    const {setIsLoggedIn} = useContext(LoggedInContext);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
 
@@ -30,13 +33,14 @@ const Register = () => {
         const token = result.token;
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify(result.email));
+        setIsLoggedIn(true);
         navigate('/');
     }
 
     return (
         <section id="register-form">
             <h2>Registro</h2>
-            <p class="error">{error}</p>
+            <p className="error">{error}</p>
             <form action="http://localhost:3333/api/users/register" method="POST" onSubmit={handleSubmit}>
                 <label htmlFor="email">Email</label>
                 <input type="email" name="email" id="email" required />

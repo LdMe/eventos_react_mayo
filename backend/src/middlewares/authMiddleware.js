@@ -17,9 +17,12 @@ const authMiddleware = async (req, res, next) => {
                 email:decodedData.email,
                 id:decodedData.id
             };
-            
+            next();
+
         }
-        next();
+        else {
+            res.status(401).send({message:"Token is not valid"})
+        }
     } catch (error) {
         res.status(401).send({message:"Token is not valid"})
     }

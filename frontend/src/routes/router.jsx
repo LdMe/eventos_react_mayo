@@ -4,6 +4,8 @@ import Upcoming from "./Upcoming";
 import ErrorPage from "./error";
 import Favorites from "../components/Favorites";
 import Register from "./register";
+import Login from "./login";
+import Logout from "./logout";
 
 const Router = createBrowserRouter([
     {
@@ -22,6 +24,14 @@ const Router = createBrowserRouter([
             {
                 path:"/register",
                 element: <Register />
+            },
+            {
+                path:"/login",
+                element: <Login />
+            },
+            {
+                path:"/logout",
+                element: <Logout />
             }
         ]
     },

@@ -5,6 +5,7 @@ import FavoritesContext from '../context/FavoritesContext';
 
 const Event = ({event}) => {
     const [isFavorite,setIsFavorite] = useState(false);
+    const [isLoggedIn,setIsLoggedIn] = useState(false);
     const idioma = useContext(IdiomaContext);
     const {favorites,getFavoritesApi} = useContext(FavoritesContext);
     const image  = event.images.length ? event.images[0].imageUrl: "https://via.placeholder.com/150";
@@ -19,11 +20,15 @@ const Event = ({event}) => {
     }
     const saveFavoriteApi = async() => {
         try {
-            const response  = await fetch('http://localhost:3333/favorites',{
+            const token = localStorage.getItem('token');
+            if(!token) return;
+            const response  = await fetch('http://localhost:3333/api/events/favorites',{
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
                 },
+                
                 body: JSON.stringify({
                     "event":event
                 })
@@ -38,10 +43,14 @@ const Event = ({event}) => {
 
     const deleteFavoriteApi = async() => {
         try {
-            const response  = await fetch(`http://localhost:3333/favorites/${event._id}`,{
+            const token = localStorage.getItem('token');
+            if(!token) return;
+            const response  = await fetch(`http://localhost:3333/api/events/favorites/${event._id}`,{
                 method: 'DELETE',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+
+                    'Authorization': `Bearer ${token}`
                 }
             });
             console.log(response);
@@ -56,6 +65,10 @@ const Event = ({event}) => {
         if (isFavorite) {
             setIsFavorite(true);
         }
+        const token = localStorage.getItem('token');
+        if(token) {
+            setIsLoggedIn(true);
+        }
     },[]);
 
     useEffect( () => {
@@ -68,7 +81,9 @@ const Event = ({event}) => {
             <h3>{idioma === "es" ? event.nameEs : event.nameEu}</h3>
             <p>{event.date}</p>
             <article dangerouslySetInnerHTML={{__html: idioma === "es" ? event.descriptionEs : event.descriptionEu}}></article>
-            <button className="button-75" onClick={saveFavorite}>{isFavorite ? "Eliminar" : "Guardar"}</button>
+            {isLoggedIn &&
+                <button className="button-75" onClick={saveFavorite}>{isFavorite ? "Eliminar" : "Guardar"}</button>
+            }
         </div>
     )
 }

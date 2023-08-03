@@ -3,6 +3,7 @@ import Root from "./root";
 import Upcoming from "./Upcoming";
 import ErrorPage from "./error";
 import Favorites from "../components/Favorites";
+import Register from "./register";
 
 const Router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const Router = createBrowserRouter([
             {
                 path:"/favorites",
                 element: <Favorites />
+            },
+            {
+                path:"/register",
+                element: <Register />
             }
         ]
     },

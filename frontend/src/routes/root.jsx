@@ -18,7 +18,13 @@ const Root = () => {
       }
     const getFavoritesApi = async() => {
         try {
-            const response = await fetch('http://localhost:3333/favorites');
+            const token = localStorage.getItem('token');
+            if(!token) return;
+            const response = await fetch('http://localhost:3333/api/events/favorites',{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
             let data = await response.json();
             data = data.map( (favorite) => {
                 const event = favorite.event;
@@ -46,6 +52,7 @@ const Root = () => {
                         <ul>
                             <li><Link to="/">Inicio</Link></li>
                             <li><Link to="/favorites">Favoritos</Link></li>
+                            <li><Link to="/register">Registrarse</Link></li>
                         </ul>
                     </nav>
                 </header>

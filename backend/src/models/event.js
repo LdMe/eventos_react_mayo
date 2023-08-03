@@ -5,6 +5,10 @@ const EventSchema = new connection.Schema({
     event: {
         type:Object,
         required:true
+    },
+    user: {
+        type:String,
+        required:true
     }
 })
 

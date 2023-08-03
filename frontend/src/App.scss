@@ -7,14 +7,21 @@ body {
     font-size:1rem;
     margin:0;
     font-family: 'Inter', sans-serif;
+    background-color: #00262a;
+    color: rgb(77, 196, 243);
 }
 
-.idioma {
-    background-color: #9EADB2;
-}
+
 * {
     box-sizing: border-box;
+    
 }
+h1 {
+
+    
+    text-align: center;
+}
+
 
 main {
     margin-top: 5rem;

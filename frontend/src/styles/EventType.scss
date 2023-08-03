@@ -14,19 +14,20 @@
     text-align: center;
     background-color: #04aabd3a;
     border: 2px solid #0396A6;
-    color: #024059;
+    color: rgb(77, 196, 243);
     margin: 10px 0;
     border-radius: 5px;
     &:hover {
         cursor:pointer;
         background-color: #0396A6;
+        color: #024059;
     }
     & h3 {
         width: 100%;
         word-wrap: break-word;
     }
     &.selected{
-        background-color: #ec19dede;
+        background-color: #6e30d3de;
     }
 }
 

@@ -9,6 +9,7 @@ const EventList = () => {
     const {eventType} = useContext(EventTypeContext);
     const getData = async () => {
         try{
+            setEvents([])
             const url  = new URL('https://api.euskadi.eus/culture/events/v1.0/events/upcoming');
             if (eventType !== "all") {
                 url.searchParams.set('type',eventType);
@@ -28,6 +29,7 @@ const EventList = () => {
 
     return (
         <section className="event-list">
+            {events.length === 0 && <p>Cargando</p>}
             {events.map( (event) => (
                 <Event event={event} key={event.id} />
             ))}

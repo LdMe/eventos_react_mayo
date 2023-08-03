@@ -1,4 +1,4 @@
-import {useContext} from 'react';
+import {useContext, useEffect} from 'react';
 
 
 import Event from './Event';
@@ -9,8 +9,10 @@ import '../styles/Event.scss';
 
 const Favorites = () => {
     const {isLoggedIn} = useContext(LoggedInContext);
-    const {favorites} = useContext(FavoritesContext);
-
+    const {favorites,getFavoritesApi} = useContext(FavoritesContext);
+    useEffect( () => {
+        getFavoritesApi();
+    },[isLoggedIn]);
     return (
         <section className="event-list">
             {isLoggedIn && favorites.length === 0 && <p>No tienes eventos favoritos</p>}

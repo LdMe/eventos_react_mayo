@@ -6,17 +6,32 @@ services:
     restart: always
     environment:
       MONGO_INITDB_DATABASE: ${DB_NAME}
-    ports:
-      - ${DB_PORT}:27017
     volumes:
       - ./data/mongo:/data/db
+    networks:
+      - bd-eventos
   backend:
     build: ./backend
     container_name: api-eventos
     restart: always
-    ports:
-      - ${APP_PORT}:3000
+    environment:
+      - VIRTUAL_HOST=api.eventos.lafuentedanel.com
+      - LETSENCRYPT_HOST=api.eventos.lafuentedanel.com
+      - LETSENCRYPT_EMAIL=admin@lafuentedanel.com
     volumes:
       - ./backend:/app
       - /app/node_modules
+    networks:
+      - nginx-proxy
+      - bd-eventos
+    depends_on:
+      - mongo
+networks:
+  proxy:
+      name: nginx-proxy
+      external: true
+  bd-eventos:
+      name: bd-eventos
+      external: false
+      
 

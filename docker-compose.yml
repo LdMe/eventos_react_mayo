@@ -15,8 +15,8 @@ services:
     container_name: api-eventos
     restart: always
     environment:
-      - VIRTUAL_HOST=api.eventos.lafuentedanel.com
-      - LETSENCRYPT_HOST=api.eventos.lafuentedanel.com
+      - VIRTUAL_HOST=lafuentedanel.com
+      - LETSENCRYPT_HOST=lafuentedanel.com
       - LETSENCRYPT_EMAIL=admin@lafuentedanel.com
     volumes:
       - ./backend:/app

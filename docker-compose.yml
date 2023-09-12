@@ -27,7 +27,7 @@ services:
     depends_on:
       - mongo
 networks:
-  proxy:
+  nginx-proxy:
       name: nginx-proxy
       external: true
   bd-eventos:
